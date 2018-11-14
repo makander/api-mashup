@@ -53,9 +53,20 @@ class Mashed {
       // Notera: att ordningen du skickar in dessa i spelar roll i steg 3)
 
       let promiseArray = [this.fetchFlickrPhotos(searchString), this.fetchWordlabWords(searchString)];
-      Promise.all(promiseArray).then(response => console.log(response))
+      Promise.all(promiseArray)
+      .then((response) => response.map(response => {
+        if (response.ok === true) {
+          return response.json(); 
+        } else { 
+            console.log("Something went wrong");
+        }
+      })
+      )
+      .then((res) => {
+        Promise.all(resolve).then(resolve)
+      })
 
-
+  
       // 2) Använd Promise.all för att hantera varje anrop (promise)
 
       // 2 a) then(results) => Om varje anrop lyckas och varje anrop returnerar data
