@@ -49,9 +49,12 @@ class Mashed {
     // Om söksträngen inte är tom och är definierad så ska vi söka
     if (this.checkSearchInput(searchString)) {
       console.log(`Trigga sökning med ${searchString}`);
-
       // 1) Bygg upp en array med anrop (promise) till fetchFlickrPhotos och fetchWordlabWords med searchString
       // Notera: att ordningen du skickar in dessa i spelar roll i steg 3)
+
+      let promiseArray = [this.fetchFlickrPhotos(searchString), this.fetchWordlabWords(searchString)];
+      Promise.all(promiseArray).then(response => console.log(response))
+
 
       // 2) Använd Promise.all för att hantera varje anrop (promise)
 
