@@ -89,7 +89,7 @@ class Mashed {
    * @returns {Promise} Ett fetch() Promise
    */
   fetchFlickrPhotos(searchString) {
-    let flickrAPIkey = ``; // Din API-nyckel här
+    let flickrAPIkey = `d713c4e61eadce01cb2bf792e5047ffb`; // Din API-nyckel här
     let flickerAPIRootURL = `https://api.flickr.com/services/rest/?`; // Grundläggande delen av Flickr's API URL
 
     // Olika sökparametrar som behövs för Flickr's API. För mer info om detta kolla i Flickrs API-dokumentation
@@ -106,7 +106,7 @@ class Mashed {
    * @returns {Promise} Ett fetch() Promise
    */
   fetchWordlabWords(searchString) {
-    let wordLabAPIkey = ``; // Din API-nyckel här
+    let wordLabAPIkey = `c034bb3e57e1adf06f1484421cf0ad03`; // Din API-nyckel här
     let wordLabURL = `http://words.bighugelabs.com/api/2/${wordLabAPIkey}/${searchString}/json`;
 
     return fetch(wordLabURL);
