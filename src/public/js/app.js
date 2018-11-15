@@ -56,11 +56,26 @@ class Mashed {
       
       // 2) Använd Promise.all för att hantera varje anrop (promise)
       Promise.all(promiseArray)
-      .then(responses =>  responses.map(response =>  response.json()
+      .then((responses) =>  responses.map(response => response.json()
         ))
-      .then(response => console.log(response))
 
-      
+      .then(response => {
+        Promise.all(response)
+        .then((data) => {
+        this.renderFlickrResults(data[0]);
+        this.renderWordlabResults(data[1])
+        })
+      })
+      .catch(error => console.error(error));
+
+      // Promise.all(response)
+      // .then((response) => {
+      //     renderFlickrResults(data[0]);
+      //     renderWordlabResults(data[1])
+      //   })
+  
+  
+
       // 2 a) then(results) => Om varje anrop lyckas och varje anrop returnerar data
 
       // 3) För varje resultat i arryen results, visa bilder från FlickR or ord från WordLab.
@@ -125,14 +140,18 @@ class Mashed {
    *
    * @param {Object} data Sökresultaten från Flickr's API.
    */
-  renderFlickrResults(data) {}
+  renderFlickrResults(data) {
+    console.log('FLICKER', data);
+  }
 
   /**
    * Metod som skapar ord-element för relaterade sökord som kommer från Wordlabs API
    *
    * @param {Object} data Sökresultaten från Flickr's API.
    */
-  renderWordlabResults(data) {}
+  renderWordlabResults(word) {
+   console.log('WORD', + word);
+  }
 }
 
 // Immediately-Invoked Function Expression, detta betyder att när JS-filen läses in så körs koden inuti funktionen nedan.
