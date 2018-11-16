@@ -58,7 +58,6 @@ class Mashed {
       Promise.all(promiseArray)
       .then((responses) =>  responses.map(response => response.json()
         ))
-
       .then(response => {
         Promise.all(response)
         .then((data) => {
@@ -67,14 +66,6 @@ class Mashed {
         })
       })
       .catch(error => console.error(error));
-
-      // Promise.all(response)
-      // .then((response) => {
-      //     renderFlickrResults(data[0]);
-      //     renderWordlabResults(data[1])
-      //   })
-  
-  
 
       // 2 a) then(results) => Om varje anrop lyckas och varje anrop returnerar data
 
@@ -140,8 +131,9 @@ class Mashed {
    *
    * @param {Object} data Sökresultaten från Flickr's API.
    */
-  renderFlickrResults(data) {
-    console.log('FLICKER', data);
+  renderFlickrResults(photos) {
+    console.log('FLICKER', photos);
+
   }
 
   /**
@@ -150,7 +142,7 @@ class Mashed {
    * @param {Object} data Sökresultaten från Flickr's API.
    */
   renderWordlabResults(word) {
-   console.log('WORD', + word);
+   console.log('WORD', word);
   }
 }
 
