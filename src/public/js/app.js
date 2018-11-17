@@ -131,9 +131,12 @@ class Mashed {
    *
    * @param {Object} data Sökresultaten från Flickr's API.
    */
-  renderFlickrResults(photos) {
-    console.log('FLICKER', photos);
-
+  renderFlickrResults(data) {
+    console.log(data.photos.photo);
+    console.log(data);
+    data.photos.photo.forEach(photo => {
+      console.log(photo.url_o)
+    });
   }
 
   /**
@@ -141,8 +144,11 @@ class Mashed {
    *
    * @param {Object} data Sökresultaten från Flickr's API.
    */
-  renderWordlabResults(word) {
-   console.log('WORD', word);
+  renderWordlabResults(data) {
+   console.log('WORD', data.noun.syn);
+   data.noun.noun.forEach(noun => {
+     console.log(syn)
+   })
   }
 }
 
