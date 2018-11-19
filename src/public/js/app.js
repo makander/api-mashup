@@ -134,15 +134,15 @@ class Mashed {
    */
   renderFlickrResults(data) {
     console.log("FLICKER", data);
+    let result = document.querySelector(".result");
+    result.innerHTML = "";
 
     let photoArray = data.photos.photo;
-    let result = document.querySelector(".result");
+
     photoArray.forEach(photo => {
       console.log(photo.url_m);
-
       let picture = document.createElement("img");
       picture.src = photo.url_m;
-
       result.appendChild(picture);
     });
   }
@@ -154,15 +154,16 @@ class Mashed {
    */
   renderWordlabResults(data) {
     console.log("WORD", data);
-    // let nounArray = [];
-    // data.noun.syn;
-    // let verbArray = [];
-    // data.veb.syn;
-    // var combinedArray = nounArray.concat(verbArray);
-    // console.log(combinedArray);
+    let list = document.querySelector("aside ul");
+    list.innerHTML = "";
 
     data.noun.syn.forEach(syn => {
       console.log(syn);
+      let listItem = document.createElement("li");
+      let link = document.createElement("a");
+      link.innerHTML = syn;
+      let linkAttribute = link.setAttribute("href", "#");
+      list.appendChild(listItem).appendChild(link);
     });
   }
 }
