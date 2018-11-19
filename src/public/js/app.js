@@ -8,14 +8,14 @@ class Mashed {
 
   initialize() {
     // Egenskaper för instanser av den här klassen, används för att referera till samma Node/Element i DOM.
-    this.sentinel = document.querySelector('.sentinel');
-    this.searchInput = document.querySelector('.search input');
-    this.searchBtn = document.querySelector('.search button');
-    this.sidebarWords = document.querySelectorAll('aside ul');
-    this.searchResultsContainer = document.querySelector('.results ul');
+    this.sentinel = document.querySelector(".sentinel");
+    this.searchInput = document.querySelector(".search input");
+    this.searchBtn = document.querySelector(".search button");
+    this.sidebarWords = document.querySelectorAll("aside ul");
+    this.searchResultsContainer = document.querySelector(".results ul");
 
     // Frivilligt: för att visa en laddningsindikator!
-    this.loadingIndicator = document.querySelector('.loader');
+    this.loadingIndicator = document.querySelector(".loader");
   }
 
   /**
@@ -23,16 +23,16 @@ class Mashed {
    */
   addEventListeners() {
     // Eventlyssnare för sök-knappen
-    this.searchBtn.addEventListener('click', event =>
+    this.searchBtn.addEventListener("click", event =>
       this.search(event, this.searchInput.value)
     );
 
     /*
-    * Eventlyssnare för alla ord i sidomenyn
-    * För mer information om forEach: https://mzl.la/IysHjg
-    */
+     * Eventlyssnare för alla ord i sidomenyn
+     * För mer information om forEach: https://mzl.la/IysHjg
+     */
     this.sidebarWords.forEach(wordEl =>
-      wordEl.addEventListener('click', event =>
+      wordEl.addEventListener("click", event =>
         this.search(event, event.target.textContent)
       )
     );
@@ -52,20 +52,22 @@ class Mashed {
       // 1) Bygg upp en array med anrop (promise) till fetchFlickrPhotos och fetchWordlabWords med searchString
       // Notera: att ordningen du skickar in dessa i spelar roll i steg 3)
 
-      let promiseArray = [this.fetchFlickrPhotos(searchString), this.fetchWordlabWords(searchString)];
-      
+      let promiseArray = [
+        this.fetchFlickrPhotos(searchString),
+        this.fetchWordlabWords(searchString)
+      ];
+
       // 2) Använd Promise.all för att hantera varje anrop (promise)
       Promise.all(promiseArray)
-      .then((responses) =>  responses.map(response => response.json()
-        ))
-      .then(response => {
-        Promise.all(response)
-        .then((data) => {
-        this.renderFlickrResults(data[0]);
-        this.renderWordlabResults(data[1])
+        .then(responses => responses.map(response => response.json()))
+
+        .then(response => {
+          Promise.all(response).then(data => {
+            this.renderFlickrResults(data[0]);
+            this.renderWordlabResults(data[1]);
+          });
         })
-      })
-      .catch(error => console.error(error));
+        .catch(error => console.error(error));
 
       // 2 a) then(results) => Om varje anrop lyckas och varje anrop returnerar data
 
@@ -76,7 +78,6 @@ class Mashed {
       // 5 skapa element och visa dem i DOM:en med metoderna (renderFlickResults och renderWordlabResults)
 
       // 2 b) catch() => Om något anrop misslyckas, visa felmeddelande
-
     } else {
       console.log(
         `Söksträngen är tom, visa ett meddelande eller bara returnera`
@@ -132,10 +133,17 @@ class Mashed {
    * @param {Object} data Sökresultaten från Flickr's API.
    */
   renderFlickrResults(data) {
-    console.log(data.photos.photo);
-    console.log(data);
-    data.photos.photo.forEach(photo => {
-      console.log(photo.url_o)
+    console.log("FLICKER", data);
+
+    let photoArray = data.photos.photo;
+    let result = document.querySelector(".result");
+    photoArray.forEach(photo => {
+      console.log(photo.url_m);
+
+      let picture = document.createElement("img");
+      picture.src = photo.url_m;
+
+      result.appendChild(picture);
     });
   }
 
@@ -145,10 +153,17 @@ class Mashed {
    * @param {Object} data Sökresultaten från Flickr's API.
    */
   renderWordlabResults(data) {
-   console.log('WORD', data.noun.syn);
-   data.noun.noun.forEach(noun => {
-     console.log(syn)
-   })
+    console.log("WORD", data);
+    // let nounArray = [];
+    // data.noun.syn;
+    // let verbArray = [];
+    // data.veb.syn;
+    // var combinedArray = nounArray.concat(verbArray);
+    // console.log(combinedArray);
+
+    data.noun.syn.forEach(syn => {
+      console.log(syn);
+    });
   }
 }
 
