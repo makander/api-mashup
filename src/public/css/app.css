@@ -387,9 +387,10 @@ aside ul li:hover a {
   border: 3px solid slategray;
   padding: 10px;
   flex: 2;
+  column-count: 3;
+  column-gap: 0;
 }
-.results .loader {
-  display: none;
+/*  .results .loader {
   width: 80px;
   height: 80px;
   border: 16px solid #fff;
@@ -397,10 +398,9 @@ aside ul li:hover a {
   border-radius: 50%;
 }
 .results .loader.spin {
-  display: block;
   animation: spinning 1s linear infinite;
 }
-
+ */
 @keyframes spinning {
   0% {
     transform: rotate(0deg);

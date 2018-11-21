@@ -79,7 +79,7 @@ class Mashed {
 
       // 2 b) catch() => Om något anrop misslyckas, visa felmeddelande
     } else {
-      console.log(
+      alert(
         `Söksträngen är tom, visa ett meddelande eller bara returnera`
       );
       return;
@@ -143,6 +143,7 @@ class Mashed {
 
     photoArray.forEach(photo => {
       let picture = document.createElement("img");
+      let listItem = document.createElement("li");
       picture.src = photo.url_m;
       result.appendChild(picture);
     });
