@@ -387,8 +387,8 @@ aside ul li:hover a {
   border: 3px solid slategray;
   padding: 10px;
   flex: 2;
-  column-count: 3;
-  column-gap: 0;
+  column-count: 4;
+  column-gap: 1px;
 }
 /*  .results .loader {
   width: 80px;
@@ -421,7 +421,7 @@ aside ul li:hover a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: gray;
+  
   color: #fff;
   font-size: 2em;
   font-family: "AvenirNext-Bold";
@@ -433,10 +433,6 @@ aside ul li:hover a {
 .results .result:last-child {
   margin-bottom: 0;
 }
-.results .result:hover {
-  cursor: pointer;
-  background-color: #8d9aa6;
-}
 
 footer {
   background-color: slategray;
@@ -446,4 +442,60 @@ footer {
   justify-content: center;
   flex-direction: column;
   text-align: center;
+}
+
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+
+    body {
+      font-size: 1.75em;
+    }
+
+    main {
+      margin: 0px 10px 10px 10px;
+    }
+
+    .search {
+      margin: 10px;
+    }
+
+
+    .search button {
+      width: 75px;
+    }
+  
+    .search input {
+      height: 70px;
+      text-indent: 30px;
+      width: initial;
+    }
+
+  .results {
+      border: 3px solid slategray;
+      padding: 10px;
+      flex: 2;
+      column-count: 1;
+      column-gap: 0;
+  }
+
+  aside ul li { 
+    line-height: 50px;
+}
+
+  aside ul li a {
+    width: 100%;
+    text-align: center;
+    font-size: small;
+  }
+
+  #gototop {
+    background-color: red;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+
 }

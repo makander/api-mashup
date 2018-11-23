@@ -38,6 +38,8 @@ class Mashed {
     );
   }
 
+
+
   /**
    * Metod (används som callback) för att hantera sökningar
    *
