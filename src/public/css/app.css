@@ -421,7 +421,7 @@ aside ul li:hover a {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   color: #fff;
   font-size: 2em;
   font-family: "AvenirNext-Bold";
@@ -434,6 +434,15 @@ aside ul li:hover a {
   margin-bottom: 0;
 }
 
+#gototop {
+  background-color: silver;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 30px;
+  bottom: 5px;
+  right: 20px;
+}
+
 footer {
   background-color: slategray;
   height: 250px;
@@ -444,46 +453,43 @@ footer {
   text-align: center;
 }
 
-
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-
-    body {
-      font-size: 1.75em;
-    }
-
-    main {
-      margin: 0px 10px 10px 10px;
-    }
-
-    .search {
-      margin: 10px;
-    }
-
-
-    .search button {
-      width: 75px;
-    }
-  
-    .search input {
-      height: 70px;
-      text-indent: 30px;
-      width: initial;
-    }
-
-  .results {
-      border: 3px solid slategray;
-      padding: 10px;
-      flex: 2;
-      column-count: 1;
-      column-gap: 0;
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    font-size: 1.75em;
   }
 
-  aside ul li { 
+  main {
+    margin: 0px 10px 10px 10px;
+  }
+
+  .search {
+    margin: 10px;
+    height: 70px;
+    min-height: 0px;
+    line-height: 0px;
+  }
+
+  .search button {
+    width: 75px;
+  }
+
+  .search input {
+    height: 70px;
+    text-indent: 30px;
+    width: initial;
+  }
+
+  .results {
+    border: 3px solid slategray;
+    padding: 10px;
+    flex: 2;
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  aside ul li {
     line-height: 50px;
-}
+  }
 
   aside ul li a {
     width: 100%;
@@ -492,10 +498,13 @@ footer {
   }
 
   #gototop {
-    background-color: red;
+    background-color: silver;
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 10px;
+    position: fixed;
+    z-index: 1000;
+    bottom: 5px;
+    right: 20px;
   }
-
 }

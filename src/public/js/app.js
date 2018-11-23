@@ -38,8 +38,6 @@ class Mashed {
     );
   }
 
-
-
   /**
    * Metod (används som callback) för att hantera sökningar
    *
@@ -62,15 +60,14 @@ class Mashed {
       // 2) Använd Promise.all för att hantera varje anrop (promise)
       Promise.all(promiseArray)
         .then(responses => responses.map(response => response.json()))
-        .catch(() =>  console.log('failed!'))
         .then(response => {
           Promise.all(response).then(data => {
             this.renderFlickrResults(data[0]);
             this.renderWordlabResults(data[1]);
-          })
+          });
         })
-        .catch(() =>  console.log('failed!'));
-       
+        .catch(() => console.log("failed!"));
+
       // 2 a) then(results) => Om varje anrop lyckas och varje anrop returnerar data
 
       // 3) För varje resultat i arryen results, visa bilder från FlickR or ord från WordLab.
@@ -81,9 +78,7 @@ class Mashed {
 
       // 2 b) catch() => Om något anrop misslyckas, visa felmeddelande
     } else {
-      alert(
-        `Söksträngen är tom, visa ett meddelande eller bara returnera`
-      );
+      alert(`Söksträngen är tom, visa ett meddelande eller bara returnera`);
       return;
     }
   }
@@ -113,7 +108,6 @@ class Mashed {
     let flickrQueryParams = `&method=flickr.photos.search&api_key=${flickrAPIkey}&text=searchString&extras=url_q, url_o, url_m&format=json&tags=${searchString}&license=2,3,4,5,6,9&sort=relevance&parse_tags=1&nojsoncallback=1`;
     let flickrURL = `${flickerAPIRootURL}${flickrQueryParams}`;
 
-
     return fetch(flickrURL);
   }
 
@@ -136,12 +130,11 @@ class Mashed {
    * @param {Object} data Sökresultaten från Flickr's API.
    */
 
-
   renderFlickrResults(data) {
     let result = document.querySelector(".result");
     result.innerHTML = "";
 
-    let photoArray = data.photos.photo
+    let photoArray = data.photos.photo;
 
     photoArray.forEach(photo => {
       let picture = document.createElement("img");
@@ -150,7 +143,6 @@ class Mashed {
       result.appendChild(picture);
     });
   }
-
 
   /**
    * Metod som skapar ord-element för relaterade sökord som kommer från Wordlabs API
@@ -165,14 +157,13 @@ class Mashed {
 
     if (data.noun != null || data.noun != undefined) {
       let nounArray = data.noun.syn;
-      Array.prototype.push.apply(combinedArray, nounArray);    
+      Array.prototype.push.apply(combinedArray, nounArray);
     } else if (data.verb != null || data.verb != undefined) {
       let verbArray = data.verb.syn;
       Array.prototype.push.apply(combinedArray, verbArray);
-    } else if 
-      (data.adjective != null || data.adjective != undefined ) {
+    } else if (data.adjective != null || data.adjective != undefined) {
       let adjectiveArray = data.adjective.rel;
-      Array.prototype.push.apply(combinedArray, adjectiveArray)
+      Array.prototype.push.apply(combinedArray, adjectiveArray);
     }
     combinedArray.forEach(item => {
       let listItem = document.createElement("li");
