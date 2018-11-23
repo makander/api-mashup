@@ -140,7 +140,12 @@ class Mashed {
       let picture = document.createElement("img");
       let listItem = document.createElement("li");
       picture.src = photo.url_m;
-      result.appendChild(picture);
+
+      var linkElement = document.createElement("a");
+      linkElement.href = photo.url_m;
+      linkElement.target = "_blank";
+
+      result.appendChild(linkElement).appendChild(picture);
     });
   }
 
